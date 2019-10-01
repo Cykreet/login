@@ -50,7 +50,7 @@ def commands(username):
         location = "None set."
         
     if command == "help":
-        print("i'm too lazy")
+        print("- profile\noutputs your profile\n- clear\nclears terminal\n- exit\nexits login app")
         commands(username)
     elif command == "profile":
         print(f"//////////\nDisplay Name: {display_name}\nUsername: {username}\nLocation: {location}\nDescription: {description}\n//////////")
