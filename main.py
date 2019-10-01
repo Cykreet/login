@@ -33,7 +33,7 @@ def askPass(username):
 
 def home(display_name):
     clear()
-    print(f"Welcome back {display_name}!")
+    print(f"Welcome back, {display_name}!")
 
     commands(username)
 
@@ -50,7 +50,7 @@ def commands(username):
         location = "None set."
         
     if command == "help":
-        print("- profile\noutputs your profile\n- clear\nclears terminal\n- exit\nexits login app")
+        print(f"- profile\noutputs your profile\n- clear\nclears terminal\n- exit\nexits login app")
         commands(username)
     elif command == "profile":
         print(f"//////////\nDisplay Name: {display_name}\nUsername: {username}\nLocation: {location}\nDescription: {description}\n//////////")
@@ -64,7 +64,7 @@ def commands(username):
         clear()
         sys.exit(1)
     else:
-        print(f"Couldn't find '{command}' command.")
+        print(f"Couldn't find the '{command}' command. Please try another or do 'help' to view all available commands!")
         commands(username)
 
 def clear():
