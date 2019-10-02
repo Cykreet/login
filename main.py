@@ -8,6 +8,7 @@ import sys
 with open("users.json") as users:
     users = json.load(users)
 
+
 def askUsername():
     global username
     username = lineInput("Please input username: ")
@@ -20,22 +21,25 @@ def askUsername():
     clear()
     askPass(username)
 
+
 def askPass(username):
     password = getpass.getpass(f"Please input password for {username}: ")
     display_name = users[username]["display_name"]
 
     if pbkdf2_sha256.verify(password, users[username]["password_hash"]):
         home(display_name)
-    else: 
+    else:
         clear()
         print("Incorrect password, please try again.")
         askPass(username)
+
 
 def home(display_name):
     clear()
     print(f"Welcome back, {display_name}!")
 
     commands(username)
+
 
 def commands(username):
     command = lineInput(f"Input command: ").lower()
@@ -48,12 +52,16 @@ def commands(username):
         description = "None set."
     elif not location:
         location = "None set."
-        
+
     if command == "help":
-        print(f"- profile\noutputs your profile\n- clear\nclears terminal\n- exit\nexits login app")
+        print(
+            f"- profile\noutputs your profile\n- clear\nclears terminal\n- exit\nexits login app"
+        )
         commands(username)
     elif command == "profile":
-        print(f"//////////\nDisplay Name: {display_name}\nUsername: {username}\nLocation: {location}\nDescription: {description}\n//////////")
+        print(
+            f"//////////\nDisplay Name: {display_name}\nUsername: {username}\nLocation: {location}\nDescription: {description}\n//////////"
+        )
         commands(username)
     elif command == "clear":
         clear()
@@ -64,19 +72,24 @@ def commands(username):
         clear()
         sys.exit(1)
     else:
-        print(f"Couldn't find the '{command}' command. Please try another or do 'help' to view all available commands!")
+        print(
+            f"Couldn't find the '{command}' command. Please try another or do 'help' to view all available commands!"
+        )
         commands(username)
 
+
 def clear():
-    if name == 'nt':
-        _ = system('cls')
+    if name == "nt":
+        _ = system("cls")
     else:
-        _ = system('clear')
+        _ = system("clear")
+
 
 def lineInput(upString):
     output = input(upString).strip()
 
     return output
+
 
 clear()
 askUsername()
