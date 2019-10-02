@@ -1,0 +1,14 @@
+{
+  "profile": {
+    "description": "outputs your profile"
+  },
+  "clear": {
+    "description": "clears terminal"
+  },
+  "exit": {
+    "description": "exits login app"
+  },
+  "help": {
+    "description": "shows this help message"
+  }
+}

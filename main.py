@@ -8,6 +8,9 @@ import sys
 with open("users.json") as users:
     users = json.load(users)
 
+with open("commands.json") as commands:
+    listofcommands = json.load(commands)
+
 
 def askUsername():
     global username
@@ -45,7 +48,7 @@ def home(display_name):
 
 
 def commands(username):
-    command = lineInput(f"Input command: ").lower()
+    command = lineInput(f"> Input command > ").lower()
 
     display_name = users[username]["display_name"]
     location = users[username]["location"]
@@ -57,13 +60,17 @@ def commands(username):
         location = "None set."
 
     if command == "help":
-        print(
-            f"- profile\noutputs your profile\n- clear\nclears terminal\n- exit\nexits login app"
-        )
+        for i in listofcommands.items():
+            print(f"# {i[0]} - {i[1]['description']}")
         commands(username)
     elif command == "profile":
         print(
-            f"//////////\nDisplay Name: {display_name}\nUsername: {username}\nLocation: {location}\nDescription: {description}\n//////////"
+            f"//////////\n"
+            f"Display Name: {display_name}\n"
+            f"Username: {username}\n"
+            f"Location: {location}\n"
+            f"Description: {description}\n"
+            f"//////////"
         )
         commands(username)
     elif command == "clear":
