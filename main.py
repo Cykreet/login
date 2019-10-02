@@ -1,6 +1,6 @@
-from passlib.hash import pbkdf2_sha256
 from os import system, name
 from time import sleep
+import bcrypt
 import getpass
 import json
 import sys
@@ -11,27 +11,28 @@ with open("users.json") as users:
 
 def askUsername():
     global username
-    username = lineInput("Please input username: ")
-
-    while username not in users:
-        clear()
-        print(f"User, '{username}' does not exist.")
-        askUsername()
-
-    clear()
-    askPass(username)
+    correctUser = False
+    while not correctUser:
+        username = lineInput("Please input username: ")
+        if username in users:
+            clear()
+            askPass(username)
+        else:
+            clear()
+            print(f"User, '{username}' does not exist.")
 
 
 def askPass(username):
-    password = getpass.getpass(f"Please input password for {username}: ")
-    display_name = users[username]["display_name"]
-
-    if pbkdf2_sha256.verify(password, users[username]["password_hash"]):
-        home(display_name)
-    else:
-        clear()
-        print("Incorrect password, please try again.")
-        askPass(username)
+    correctPW = False
+    while not correctPW:
+        password = getpass.getpass(f"Please input password for {username}: ")
+        display_name = users[username]["display_name"]
+        if not bcrypt.checkpw(password.encode('utf8'), users[username]["password_hash"].encode('utf8')):
+            clear()
+            print("Incorrect password, please try again.")
+        else:
+            correctPW = True
+            home(display_name)
 
 
 def home(display_name):
@@ -91,5 +92,6 @@ def lineInput(upString):
     return output
 
 
-clear()
-askUsername()
+if __name__ == "__main__":
+    clear()
+    askUsername()
