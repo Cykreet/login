@@ -2,7 +2,7 @@
     "mad_man24": {
         "username": "mad_man24",
         "display_name": "Mad Man",
-        "password_hash": "$pbkdf2-sha256$29000$ohRCSCml9D5HyBmjNEboPQ$fNRogAsgoJOObulGwzgZKmu7937MZt/5xd8CD7E8.Qw",
+        "password_hash": "$2y$12$rNZyq6KlrY/5qhW5a6c0Uu4MTwI7egDTKRQoB4LrNkz5dFd8NxP9.",
         "location": "Pacific Ocean",
         "description": "likes puppies!"
     }
