@@ -27,7 +27,9 @@ def askPass(username):
     while not correctPW:
         password = getpass.getpass(f"Please input password for {username}: ")
         display_name = users[username]["display_name"]
-        if not bcrypt.checkpw(password.encode('utf8'), users[username]["password_hash"].encode('utf8')):
+        if not bcrypt.checkpw(
+            password.encode("utf8"), users[username]["password_hash"].encode("utf8")
+        ):
             clear()
             print("Incorrect password, please try again.")
         else:
