@@ -1,4 +1,4 @@
 reportStatus: true
 
 minApprovals:
-  COLLABORATOR: 2
+  COLLABORATOR: 1
