@@ -1,3 +1,4 @@
-## Extremely Simple Python Login *thing*
+## ESPCLLC
+### Extremely Simple Python Command Line Login Concept
 
-just messing around tbh
+very cool

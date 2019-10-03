@@ -44,10 +44,10 @@ def home(display_name):
     clear()
     print(f"Welcome back, {display_name}!")
 
-    commands(username)
+    home_commands(username)
 
 
-def commands(username):
+def home_commands(username):
     command = lineInput(f"> Input command > ").lower()
 
     display_name = users[username]["display_name"]
@@ -62,7 +62,7 @@ def commands(username):
     if command == "help":
         for i in listofcommands.items():
             print(f"# {i[0]} - {i[1]['description']}")
-        commands(username)
+        home_commands(username)
     elif command == "profile":
         print(
             f"//////////\n"
@@ -72,10 +72,10 @@ def commands(username):
             f"Description: {description}\n"
             f"//////////"
         )
-        commands(username)
+        home_commands(username)
     elif command == "clear":
         clear()
-        commands(username)
+        home_commands(username)
     elif command == "exit":
         print("Exiting...")
         sleep(1)
@@ -85,7 +85,7 @@ def commands(username):
         print(
             f"Couldn't find the '{command}' command. Please try another or do 'help' to view all available commands!"
         )
-        commands(username)
+        home_commands(username)
 
 
 def clear():
