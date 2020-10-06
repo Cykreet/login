@@ -10,5 +10,5 @@ simple command-line application made for fun ᵃⁿᵈ ᵃ ᶠʳᵉᵉ ᵗˢʰ�
 
 if all's well, i hope to revisit this repo each year, rewriting and adding features i think would fit the project - nothing too crazy though. 
 
-- [`2020`](/pulls?q=created%3A2020) - WIP
-- [`2019`](/pulls?q=created%3A2019)
+- [`2020`](https://github.com/Cykreet/login/pulls?q=created%3A2020)
+- [`2019`](https://github.com/Cykreet/login/pulls?q=created%3A2019)
