@@ -1,4 +1,4 @@
-from types import coroutine
+from typing import Any, IO
 from helpers import console
 from enum import Enum
 from hub.hub import Hub
@@ -6,12 +6,12 @@ from hub.user import User
 import json
 import bcrypt
 
-with open ("users.json", "r+") as users:
-  try:
-    users = json.load(users)
-  except:
-    users = json.dump(dict(), users)
-    
+users: Any
+
+try:
+  users = json.load(open("users.json"))
+except:
+  users = json.dump(dict(), open("users.json", "w"))
 
 class Mode(Enum):
   LOGIN = "1"
