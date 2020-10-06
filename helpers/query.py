@@ -6,8 +6,12 @@ from hub.user import User
 import json
 import bcrypt
 
-with open ("users.json") as users:
-  users = json.load(users)
+with open ("users.json", "r+") as users:
+  try:
+    users = json.load(users)
+  except:
+    users = json.dump(dict(), users)
+    
 
 class Mode(Enum):
   LOGIN = "1"
@@ -15,52 +19,52 @@ class Mode(Enum):
 
 class Query:
   mode: str
-  user: User
-
-  def __init__(self):
-    self.user = User()
+  user = User()
 
   def start(self):
-    valid = False
-    while not valid:
+    while True:
       mode = console.query(f"Please specify whether you'd like to (1, default) login or (2) create an account:")
       if mode == Mode.LOGIN.value or mode == Mode.CREATE.value or not mode:
-        valid = True
         self.mode = mode if mode else Mode.LOGIN.value
 
         console.clear()
         self.__username()
+        break
     
       console.clear()
 
   def __username(self):
-    valid = False
-    while not valid:
+    while True:
       username = console.query("Username:")
       if self.mode == Mode.CREATE.value:
-        # todo
-        console.error("Work in progress..", True)
-
-      if username in users:
-        valid = True
         self.user.username = username
-        self.user.password = users[username]["password"]
 
         console.clear()
         self.__password()
+        break
+
+      if len(users) > 0 and username in users:
+        self.user.username = username
+        self.user.password = users[username]['password']
+
+        console.clear()
+        self.__password()
+        break
 
       console.error("That user doesn't exist.")
       
   def __password(self):
-    valid = False
-    while not valid:
+    while True:
       password = console.query(f"{self.user.username}'s Password:", True)
       if self.mode == Mode.CREATE.value:
-        # todo
-        console.error("Work in progress...", True)
+        self.user.password = password
+        self.user.save()
+
+        Hub(self.user)
+        break
 
       if bcrypt.checkpw(password.encode(), self.user.password.encode()):
-        valid = True
         Hub(self.user)
+        break
         
       console.error("Incorrect password, please try again.")
