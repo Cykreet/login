@@ -11,6 +11,9 @@ class CommandContext:
 def command_clear(ctx: CommandContext):
   console.clear()
 
+def command_hello(ctx: CommandContext):
+  console.message(f"Hello, {ctx.user.username}!")
+
 def command_echo(ctx: CommandContext):
   if not len(ctx.args) > 0:
     raise CommandError("You need to tell me what to echo!")
